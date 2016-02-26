@@ -1,3 +1,11 @@
+class Decred:
+    def __init__(self, amount):
+        pass
+
+    def to_euro(self):
+        return 0
+
+
 class Processor:
     def __init__(self):
         pass
@@ -32,6 +40,10 @@ class Processor:
     def __compute_earning_rate_with_all_parameters(self):
         self.earning_rate = (self.decred_per_hour * self.decred_to_dollar * self.dollar_to_euro) \
                             - (self.consumption * self.price_kwh)
+
+
+class RateNotSetException(Exception):
+    pass
 
 
 class ParameterNotSetException(Exception):
