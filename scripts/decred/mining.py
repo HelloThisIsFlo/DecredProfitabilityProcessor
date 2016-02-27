@@ -21,3 +21,7 @@ class Production:
 
     def mine(self, hours):
         return Decred(hours * self.per_hour, self.market_price)
+
+
+class Profitability:
+    pass
