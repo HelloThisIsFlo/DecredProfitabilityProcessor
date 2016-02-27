@@ -22,4 +22,4 @@ def test_production_per_hour(production):
 def test__production_in_euro(production):
     hours = 4
     expected = hours * DECRED_MINED_PER_HOUR * DECRED_TO_DOLLAR_RATE * DOLLAR_TO_EURO_RATE
-    assert expected == production.mine(hours).to_euro()
+    assert abs(expected - production.mine(hours).to_euro()) < 0.0001

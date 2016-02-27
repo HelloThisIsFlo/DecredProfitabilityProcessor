@@ -1,4 +1,5 @@
 from decred.currency import Decred
+import decred.currency
 
 
 class Consumption:
@@ -24,4 +25,18 @@ class Production:
 
 
 class Profitability:
-    pass
+    def __init__(self, market_price, consumption, production):
+        self.market_price = market_price
+        self.consumption = consumption
+        self.production = production
+        pass
+
+    def per_hour(self):
+        produced_one_hour = self.production.mine(1)
+        spent_one_hour = self.consumption.mining_cost(1)
+
+        return decred.currency.from_euro(produced_one_hour.to_euro() - spent_one_hour, self.market_price)
+
+    def mine(self, hours):
+        earned = self.per_hour().amount * hours
+        return Decred(earned, self.market_price)
